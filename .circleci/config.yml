@@ -132,5 +132,5 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)*(-.*)*/
-          requires:
-            - "images"
+          #requires:
+            #- "images"
