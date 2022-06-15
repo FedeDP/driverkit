@@ -126,7 +126,7 @@ workflows:
             - "build-test"
             - "build-test-arm64"
       - "release":
-          context: falco
+          #context: falco
           filters:
             branches:
               ignore: /.*/
