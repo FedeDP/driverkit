@@ -75,6 +75,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 20.10.12
+          docker_layer_caching: true
       - run:
           name: Install deps
           command: |
@@ -104,6 +105,7 @@ jobs:
     machine:
       enabled: true
       image: ubuntu-2004:2022.04.1
+      docker_layer_caching: true 
     resource_class: arm.medium
     steps:
       - attach_workspace:
