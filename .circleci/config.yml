@@ -108,7 +108,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /
-      - checkout:
+      - checkout
       - run:
           name: Install deps
           command: |
