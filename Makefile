@@ -18,7 +18,7 @@ endif
 
 TARGET_ARCH ?= $(shell uname -m)
 
-DOCKER_ORG ?= falcosecurity
+DOCKER_ORG ?= fededp
 
 IMAGE_NAME_BUILDER ?= docker.io/$(DOCKER_ORG)/driverkit-builder
 
