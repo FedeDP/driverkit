@@ -80,6 +80,7 @@ jobs:
           command: |
             apk update
             apk add make bash git docker
+            export DOCKER_CLI_EXPERIMENTAL=enabled
       - run:
           name: Login to registry
           command: echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
@@ -113,9 +114,8 @@ jobs:
       - run:
           name: Prepare project
           command: |
-            docker run --rm -it -v /tmp:/ -v /var/run/docker.sock:/var/run/docker.sock -w /source --name alpine_sh -d alpine:3.16 sh
+            docker run --rm -it -v /tmp:/tmp -v /var/run/docker.sock:/var/run/docker.sock -w /tmp/source --name alpine_sh -d alpine:3.16 sh
             docker exec alpine_sh apk add gcc musl-dev make bash git go docker
-            docker exec alpine_sh git config --global --add safe.directory /source  
       - run:
           name: Login to registry
           command: docker exec alpine_sh echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
@@ -123,7 +123,7 @@ jobs:
           name: Prepare artifact for driverkit image
           command: | # driverkit dockerfile expects the binary there
             docker exec alpine_sh mkdir -p build-arm64
-            docker exec alpine_sh cp /build-arm64/driverkit build-arm64/
+            docker exec alpine_sh cp /tmp/build-arm64/driverkit build-arm64/
       - run:
           name: Build and Push docker images
           command: docker exec -e GIT_BRANCH="$CIRCLE_BRANCH" -e GIT_TAG="$CIRCLE_TAG" alpine_sh make push/all
