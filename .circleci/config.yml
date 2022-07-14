@@ -189,7 +189,7 @@ workflows:
             tags:
               only: /v[0-9]+(\.[0-9]+)*(-.*)*/
       - "build-images":
-          context: falco
+          context: fededp
           filters:
             branches:
               only:
@@ -199,7 +199,7 @@ workflows:
           requires:
             - "build-test"
       - "build-images-arm64":
-          context: falco
+          context: fededp
           filters:
             branches:
               only:
@@ -209,7 +209,7 @@ workflows:
           requires:
             - "build-test-arm64"      
       - "images":
-          context: falco
+          context: fededp
           filters:
             branches:
               only:

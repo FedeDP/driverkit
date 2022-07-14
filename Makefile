@@ -16,7 +16,7 @@ ifeq ($(COMMITS_FROM_GIT_TAG),0)
 	endif
 endif
 
-DOCKER_ORG ?= falcosecurity
+DOCKER_ORG ?= fededp
 
 IMAGE_NAME_BUILDER ?= docker.io/$(DOCKER_ORG)/driverkit-builder
 
